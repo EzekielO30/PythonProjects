@@ -36,15 +36,54 @@ def manage_todo_list():
             print("Invalid action. Please try again.")
     return todo_list
 
+def get_weather_update():
+    # Placeholder function for getting weather updates
+    weather = "It's sunny and 75 degrees Fahrenheit."
+    print("Weather update: " + weather)
+    return weather
+
+def get_news_briefing():
+    # Placeholder function for getting news briefings
+    news = [
+        "AI technology is rapidly evolving.",
+        "New Python version released with exciting features.",
+        "Global efforts to combat climate change are increasing."
+    ]
+    print("Today's news briefing:")
+    for headline in news:
+        print(f"- {headline}")
+    return news
+
+def command_parser():
+    print("You can ask me to do the following tasks:")
+    print("1. Set a reminder")
+    print("2. Manage your to-do list")
+    print("3. Get a weather update")
+    print("4. Get a news briefing")
+    print("5. Exit")
+
+    while True:
+        command = input("What would you like me to do? ").lower()
+        if "reminder" in command:
+            reminders = set_reminder()
+            print("Your reminders:")
+            for reminder in reminders:
+                print(f"- {reminder}")
+        elif "to-do" in command or "todo" in command:
+            todo_list = manage_todo_list()
+        elif "weather" in command:
+            get_weather_update()
+        elif "news" in command:
+            get_news_briefing()
+        elif "exit" in command:
+            print("Goodbye!")
+            break
+        else:
+            print("Sorry, I didn't understand that command. Please try again.")
+
 def main():
     user_name = greet_user()
-    print("\nLet's set some reminders.")
-    reminders = set_reminder()
-    print("\nYour reminders:")
-    for reminder in reminders:
-        print(f"- {reminder}")
-    print("\nLet's manage your to-do list.")
-    todo_list = manage_todo_list()
+    command_parser()
 
 if __name__ == "__main__":
     main()
